@@ -5,22 +5,33 @@
     <title>Todos</title>
     <link href="https://unpkg.com/bootstrap@5.2.2/dist/css/bootstrap.min.css"
           rel="stylesheet" />
+    <style>
+        .sidebar-item{
+            color:blue;
+        }
+        .sidebar-item.indent{
+            margin-left: 50px;
+        }
+        h1{
+            text-align:center;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
    <div class="bg-light mt-3 mb-3 p-5">
-       <h1 style="text-align: center">Aufgabenplaner: Todos (Aktuelles Projekt)</h1>
+       <h1>Aufgabenplaner: Todos (Aktuelles Projekt)</h1>
    </div>
     <div class="row">
         <div class="col-2">
-            <ul class="list-group">
-                <li class="list-group-item">Login</li>
-                <li class="list-group-item">Projekte</li>
-                <li class="list-group-item">Aktuelles Projekt</li>
-                <li class="list-group-item">Reiter</li>
-                <li class="list-group-item">Aufgaben</li>
-                <li class="list-group-item">Mitglieder</li>
-            </ul>
+            <div class="list-group">
+                <div class="sidebar-item list-group-item">Login</div>
+                <div class="sidebar-item list-group-item">Projekte</div>
+                <div class="sidebar-item list-group-item">Aktuelles Projekt</div>
+                <div class="sidebar-item indent list-group-item">Reiter</div>
+                <div class="sidebar-item indent list-group-item">Aufgaben</div>
+                <div class="sidebar-item indent list-group-item">Mitglieder</div>
+            </div>
         </div>
         <div class="col-10">
             <div class="row">
@@ -29,10 +40,10 @@
                         <div class="card-header">
                             ToDo:
                         </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">HTML Datei erstellen (Max Mustermann)</li>
-                            <li class="list-group-item">CSS Datei erstellen (Max Mustermann)</li>
-                        </ul>
+                        <div class="list-group">
+                            <div class="list-group-item">HTML Datei erstellen (Max Mustermann)</div>
+                            <div class="list-group-item">CSS Datei erstellen (Max Mustermann)</div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-4">
@@ -40,19 +51,19 @@
                         <div class="card-header">
                             Erledigt:
                         </div>
-                        <ul class="list-group">
-                            <li class="list-group-item">PC Eingeschaltet (Petra Müller)</li>
-                            <li class="list-group-item">Kaffee trinken (Petra Müller)</li>
-                        </ul>
+                        <div class="list-group">
+                            <div class="list-group-item">PC Eingeschaltet (Petra Müller)</div>
+                            <div class="list-group-item">Kaffee trinken (Petra Müller)</div>
+                        </div>
                     </div>
                 </div><div class="col-4">
                 <div class="card">
                     <div class="card-header">
                         Verschoben:
                     </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">Für die Uni lernen (Max Mustermann)</li>
-                    </ul>
+                    <div class="list-group">
+                        <div class="list-group-item">Für die Uni lernen (Max Mustermann)</div>
+                    </div>
                 </div>
             </div>
             </div>
