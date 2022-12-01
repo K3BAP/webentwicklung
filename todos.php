@@ -1,33 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>Todos</title>
     <link href="https://unpkg.com/bootstrap@5.2.2/dist/css/bootstrap.min.css"
           rel="stylesheet" />
-    <style>
-        .sidebar-item{
-            color:blue;
-        }
-        h1{
-            text-align:center;
-        }
-    </style>
 </head>
 <body>
 <div class="container-fluid">
    <div class="bg-light mt-3 mb-3 p-5">
-       <h1>Aufgabenplaner: Todos (Aktuelles Projekt)</h1>
+       <h1 class="text-center">Aufgabenplaner: Todos (Aktuelles Projekt)</h1>
    </div>
     <div class="row">
         <div class="col-2">
             <div class="list-group">
-                <div class="sidebar-item list-group-item">Login</div>
-                <div class="sidebar-item list-group-item">Projekte</div>
-                <div class="sidebar-item list-group-item">Aktuelles Projekt</div>
-                <div class="sidebar-item list-group-item ms-5">Reiter</div>
-                <div class="sidebar-item list-group-item ms-5">Aufgaben</div>
-                <div class="sidebar-item list-group-item ms-5">Mitglieder</div>
+                <div class="list-group-item text-primary">Login</div>
+                <div class="list-group-item text-primary">Projekte</div>
+                <div class="list-group-item text-primary">Aktuelles Projekt</div>
+                <div class="list-group-item text-primary ms-5">Reiter</div>
+                <div class="list-group-item text-primary ms-5">Aufgaben</div>
+                <div class="list-group-item text-primary ms-5">Mitglieder</div>
             </div>
         </div>
         <div class="col-10">
