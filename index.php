@@ -1,3 +1,3 @@
 <?php
-header("Location: ./todos.php", true, 301);
+header("Location: ./login.php", true, 301);
 exit();
