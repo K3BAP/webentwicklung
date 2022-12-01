@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link href="https://unpkg.com/bootstrap@5.2.2/dist/css/bootstrap.min.css"
           rel="stylesheet" />
@@ -12,8 +13,8 @@
             <h1 class="text-center">Aufgabenplaner: Login</h1>
         </div>
         <div class="row">
-            <div class="col-xxl-4 col-lg-3 col-md-2 col-sm-1 col-xs-1"></div>
-            <div class="col-xxl-4 col-lg-6 col-md-8 col-sm-10 col-xs-10">
+            <div class="col-xxl-4 col-lg-3 col-md-2 col-sm-1 d-none d-sm-block"></div>
+            <div class="col-xxl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12">
                 <form>
                     <div class="form-group my-1">
                         <label for="loginEmail">Email-Adresse:</label>
