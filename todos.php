@@ -12,16 +12,7 @@
        <h1 class="text-center">Aufgabenplaner: Todos (Aktuelles Projekt)</h1>
    </div>
     <div class="row">
-        <div class="col-2">
-            <div class="list-group">
-                <div class="list-group-item text-primary">Login</div>
-                <div class="list-group-item text-primary">Projekte</div>
-                <div class="list-group-item text-primary">Aktuelles Projekt</div>
-                <div class="list-group-item text-primary ms-5">Reiter</div>
-                <div class="list-group-item text-primary ms-5">Aufgaben</div>
-                <div class="list-group-item text-primary ms-5">Mitglieder</div>
-            </div>
-        </div>
+        <?php require("./common/sidebar.php"); ?>
         <div class="col-10">
             <div class="row">
                 <div class="col-4">
