@@ -12,7 +12,7 @@
         <h1 class="text-center">Aufgabenplaner: Personen</h1>
     </div>
     <div class="row">
-        <div class="col-2"><?php require("./common/sidebar.php"); ?></div>
+        <?php require("./common/sidebar.php"); ?>
 
     </div>
 </div>

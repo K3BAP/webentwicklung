@@ -12,7 +12,7 @@
        <h1 class="text-center">Aufgabenplaner: Todos (Aktuelles Projekt)</h1>
    </div>
     <div class="row">
-        <div class="col-2"><?php require("./common/sidebar.php"); ?></div>
+        <?php require("./common/sidebar.php"); ?>
         <div class="col-10">
             <div class="row">
                 <div class="col-4">
