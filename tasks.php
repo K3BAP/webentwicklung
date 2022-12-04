@@ -8,9 +8,10 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="bg-light mt-3 mb-3 p-5">
-        <h1 class="text-center">Aufgabenplaner: Aufgaben</h1>
-    </div>
+    <?php
+    $heading_text = "Aufgabenplaner: Aufgaben";
+    require("./common/heading.php");
+    ?>
     <div class="row">
         <?php require("./common/sidebar.php"); ?>
 

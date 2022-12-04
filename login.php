@@ -9,9 +9,10 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="bg-light mt-3 mb-3 p-5">
-            <h1 class="text-center">Aufgabenplaner: Login</h1>
-        </div>
+        <?php
+        $heading_text = "Aufgabenplaner: Login";
+        require("./common/heading.php");
+        ?>
         <div class="row">
             <div class="col-xxl-4 col-lg-3 col-md-2 col-sm-1 d-none d-sm-block"></div>
             <div class="col-xxl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12">
