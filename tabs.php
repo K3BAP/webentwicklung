@@ -53,12 +53,12 @@
             </table>
             <form>
                 <h2>Bearbeiten/Erstellen</h2>
-                <div class="form-group mb-3">
-                    <label for="reiterBezeichnungInput">Bezeichnung des Reiters:</label>
+                <div class="form-group mb-2">
+                    <label for="reiterBezeichnungInput" class="mb-1">Bezeichnung des Reiters:</label>
                     <input type="text" class="form-control" id="reiterBezeichnungInput" placeholder="Reiter">
                 </div>
-                <div class="form-group mb-3">
-                    <label for="reiterBeschreibungText">Bezeichnung des Reiters:</label>
+                <div class="form-group mb-2">
+                    <label for="reiterBeschreibungText" class="mb-1">Beschreibung:</label>
                     <textarea id="reiterBeschreibungText" rows="4" class="form-control" placeholder="Beschreibung"></textarea>
                 </div>
                 <button class="btn btn-primary">Speichern</button>
