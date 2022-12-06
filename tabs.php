@@ -2,7 +2,7 @@
     $reiter = array(
         array(
             "name" => "ToDo",
-            "beschreibung" => "Dinge, die erledigt werde müssen."
+            "beschreibung" => "Dinge, die erledigt werden müssen."
         ),
         array(
             "name" => "Erledigt",
