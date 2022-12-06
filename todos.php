@@ -1,3 +1,4 @@
+<?php require_once('./common/database.php'); ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -16,37 +17,23 @@
         <?php require("./common/sidebar.php"); ?>
         <div class="col-10">
             <div class="row">
+                <?php if(isset($reiter)): foreach ($reiter as $item): ?>
                 <div class="col-4">
-                    <div class="card">
+                    <div class="card mb-4">
                         <div class="card-header">
-                            ToDo:
+                            <?php echo(isset($item) ? $item['name'] : ''); ?>:
                         </div>
                         <div class="list-group list-group-flush">
-                            <div class="list-group-item">HTML Datei erstellen (Max Mustermann)</div>
-                            <div class="list-group-item">CSS Datei erstellen (Max Mustermann)</div>
+                            <?php if (isset($aufgaben)): foreach ($aufgaben as $task): ?>
+                            <?php if ($item['name'] == $task['reiter']): ?>
+
+                            <div class="list-group-item"><?php echo($task['name'] . " (" . $task['zustaendig'] . ")")?></div>
+
+                            <?php endif; endforeach; endif; ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="card-header">
-                            Erledigt:
-                        </div>
-                        <div class="list-group list-group-flush">
-                            <div class="list-group-item">PC Eingeschaltet (Petra Müller)</div>
-                            <div class="list-group-item">Kaffee trinken (Petra Müller)</div>
-                        </div>
-                    </div>
-                </div><div class="col-4">
-                <div class="card">
-                    <div class="card-header">
-                        Verschoben:
-                    </div>
-                    <div class="list-group list-group-flush">
-                        <div class="list-group-item">Für die Uni lernen (Max Mustermann)</div>
-                    </div>
-                </div>
-            </div>
+                <?php endforeach; endif; ?>
             </div>
         </div>
     </div>

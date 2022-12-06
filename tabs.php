@@ -1,19 +1,4 @@
-<?php
-    $reiter = array(
-        array(
-            "name" => "ToDo",
-            "beschreibung" => "Dinge, die erledigt werden müssen."
-        ),
-        array(
-            "name" => "Erledigt",
-            "beschreibung" => "Dinge, die erledigt sind."
-        ),
-        array(
-            "name" => "Verschoben",
-            "beschreibung" => "Dinge, die später erledigt werden."
-        ),
-    )
-?>
+<?php require_once('./common/database.php'); ?>
 
 <!DOCTYPE html>
 <html lang="de">

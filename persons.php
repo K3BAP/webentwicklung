@@ -1,16 +1,4 @@
-<?php
-$personen = array(
-    array(
-        "name" => "Max Mustermann",
-        "email" => "mustermann@muster.de",
-        "in_projekt" => false
-    ),    array(
-        "name" => "Petra Müller",
-        "email" => "petra@mueller.de",
-        "in_projekt" => true
-    ),
-)
-?>
+<?php require_once('./common/database.php'); ?>
 
 <!DOCTYPE html>
 <html lang="de">
