@@ -10,7 +10,7 @@
 <body>
     <div class="container-fluid">
         <?php
-        $heading_text = "Aufgabenplaner: Loginnnnnnn";
+        $heading_text = "Aufgabenplaner: Login";
         require("./common/heading.php");
         ?>
         <div class="row">
