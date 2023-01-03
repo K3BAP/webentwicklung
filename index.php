@@ -1,3 +1,3 @@
 <?php
-header("Location: ./login.php", true, 301);
+header("Location: ./ci/public/", true, 301);
 exit();
