@@ -14,6 +14,16 @@ class MitgliedModel extends Model
         return $result->getResultArray();
     }
 
+    public function getMitglied(int $mitgliedId)
+    {
+        $mitglieder = $this->db->table("mitglied");
+        $mitglieder->select("*");
+        $mitglieder->where("mitgliedId", $mitgliedId);
+
+        $result = $mitglieder->get();
+        return $result->getRowArray();
+    }
+
     public function getMitgliedByEmail(string $email = null)
     {
         if (!isset($email)) return null;
@@ -29,14 +39,36 @@ class MitgliedModel extends Model
         return $result[0];
     }
 
-    public function createMitglied(string $mitgliedUsername, string $mitgliedEmail, string $mitgliedPasswordHash)
+    public function createMitglied(string $mitgliedUsername, string $mitgliedEmail, string $mitgliedPassword)
     {
         $mitglieder = $this->db->table("mitglied");
         $mitglieder->insert(array(
             'mitgliedUsername' => $mitgliedUsername,
             'mitgliedEmail' => $mitgliedEmail,
-            'mitgliedPassword' => $mitgliedPasswordHash
+            'mitgliedPassword' => password_hash($mitgliedPassword, PASSWORD_DEFAULT)
         ));
         return $this->db->insertID();
+    }
+
+    public function updateMitglied(int $mitgliedId, string $mitgliedUsername, string $mitgliedEmail, string $mitgliedPassword)
+    {
+        if (empty($mitgliedId)) return redirect()->to(base_url("./persons"));
+
+        $updateStatement = array();
+        if (!empty($mitgliedUsername)) $updateStatement['mitgliedUsername'] = $mitgliedUsername;
+        if (!empty($mitgliedEmail)) $updateStatement['mitgliedEmail'] = $mitgliedEmail;
+        if (!empty($mitgliedPassword)) $updateStatement['mitgliedPassword'] = password_hash($mitgliedPassword, PASSWORD_DEFAULT);
+
+        $mitglieder = $this->db->table("mitglied");
+        $mitglieder->where("mitgliedId", $mitgliedId);
+
+        $mitglieder->update($updateStatement);
+    }
+
+    public function deleteMitglied(int $mitgliedId)
+    {
+        $mitglieder = $this->db->table("mitglied");
+        $mitglieder->where("mitgliedId", $mitgliedId);
+        $mitglieder->delete();
     }
 }

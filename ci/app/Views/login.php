@@ -11,7 +11,7 @@
                     <input id="loginPwd" name="password" type="password" class="form-control" placeholder="Passwort">
                 </div>
                 <div class="form-group form-check my-1">
-                    <input id="agbCheck" type="checkbox" class="form-check-input">
+                    <input id="agbCheck" name="agbaccept" type="checkbox" class="form-check-input">
                     <label for="agbCheck" class="form-check-label">AGBs und Datenschutzbedingungen akzeptieren</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Einloggen</button>

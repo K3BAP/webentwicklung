@@ -21,14 +21,14 @@ class Login extends BaseController
     public function index()
     {
         $loginCandidate = null;
-        if (isset($_POST['email']) && isset($_POST['password']))
+        if (!empty($_POST['email']) && !empty($_POST['password'] && !empty($_POST['agbaccept'])))
         {
             $loginCandidate = $this->mitgliedModel->getMitgliedByEmail($_POST['email']);
         };
 
         if ($loginCandidate != null && password_verify($_POST['password'], $loginCandidate['mitgliedPassword']))
         {
-            $this->session->set("loginUserId", $loginCandidate['mitgliedId']);
+            $this->session->set("sessionUserId", $loginCandidate['mitgliedId']);
 
             $projekte = $this->projektModel->getProjekteForMitglied($loginCandidate['mitgliedId']);
             if (!empty($projekte["0"]))

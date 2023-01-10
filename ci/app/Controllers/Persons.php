@@ -20,12 +20,22 @@ class Persons extends BaseController
         helper(["form", "url"]);
 
     }
+
     public function index()
     {
         $headData['title'] = 'Mitglieder';
         $headData['heading'] = 'Aufgabenplaner: Mitglieder';
         $data['personen'] = $this->mitgliedModel->getMitglieder();
 
+        // Check if a person should be edited
+        if (!empty($_GET['editId']))
+        {
+            $data['editPerson'] = $this->mitgliedModel->getMitglied($_GET['editId']);
+            $data['editPerson']['in_projekt'] = $this->projektModel->mitgliedInProjekt($data['editPerson']['mitgliedId'], $this->session->get('currentProjectId'));
+            $data['showPasswordField'] = ($data['editPerson']['mitgliedId'] == $this->session->get('sessionUserId'));
+        }
+
+        // For each person check if it is assigned to current project (for checkbox in table)
         foreach ($data['personen'] as &$person)
         {
             $person['in_projekt'] = $this->projektModel->mitgliedInProjekt($person['mitgliedId'], $this->session->get('currentProjectId'));
@@ -39,15 +49,16 @@ class Persons extends BaseController
 
     public function save()
     {
-        if (empty($_POST['username']) | empty($_POST['email']) | empty($_POST['password'])) return redirect()->to(base_url('./persons'));
-
         if (empty($_POST['userId']))
         {
+            // Prüfe, dass alle Felder ausgefüllt sind
+            if (empty($_POST['username']) | empty($_POST['email']) | empty($_POST['password'])) return redirect()->to(base_url('./persons'));
+
             // Speichere neuen Kunden
             $inserted_id = $this->mitgliedModel->createMitglied(
                 $_POST['username'],
                 $_POST['email'],
-                password_hash($_POST['password'], PASSWORD_DEFAULT)
+                $_POST['password']
             );
 
             // Lege ggf. Verknüpfung zu aktuellem Projekt an
@@ -58,9 +69,31 @@ class Persons extends BaseController
         else
         {
             // Update bestehenden Kunden
+            $username = empty($_POST['username']) ? "" : $_POST['username'];
+            $email = empty($_POST['email']) ? "" : $_POST['email'];
+            $password = empty($_POST['password']) ? "" : $_POST['password'];
+            $assigned = !empty($_POST['assigned']);
+
+            // Update table Mitglied
+            $this->mitgliedModel->updateMitglied($_POST['userId'], $username, $email, $password, $assigned);
+
+            // Update Project Assignment
+            if ($assigned && !$this->projektModel->mitgliedInProjekt($_POST['userId'], $this->session->get("currentProjectId")))
+                $this->projektModel->addMitgliedToProject($_POST['userId'], $this->session->get("currentProjectId"));
+
+            if (!$assigned && $this->projektModel->mitgliedInProjekt($_POST['userId'], $this->session->get("currentProjectId")))
+                $this->projektModel->removeMitgliedFromProject($_POST['userId'], $this->session->get("currentProjectId"));
         }
 
-
         return redirect()->to(base_url('./persons'));
+    }
+
+    public function delete()
+    {
+        if (!empty($_GET['id'])) {
+            $this->mitgliedModel->deleteMitglied($_GET['id']);
+        }
+
+        return redirect()->to(base_url("persons"));
     }
 }

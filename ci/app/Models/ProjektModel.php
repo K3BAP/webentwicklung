@@ -61,4 +61,14 @@ class ProjektModel extends Model
             ));
         }
     }
+
+    public function removeMitgliedFromProject(int $mitgliedId, int $projektId)
+    {
+        $projekt_mitglied = $this->db->table("projekt_mitglied");
+        $projekt_mitglied->where(array(
+            "mitgliedId" => $mitgliedId,
+            "projektId" =>  $projektId
+        ));
+        $projekt_mitglied->delete();
+    }
 }
