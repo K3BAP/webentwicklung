@@ -13,4 +13,19 @@ class MitgliedModel extends Model
         $result = $mitglieder->get();
         return $result->getResultArray();
     }
+
+    public function getMitgliedByEmail(string $email = null)
+    {
+        if (!isset($email)) return null;
+
+        $mitglieder = $this->db->table("mitglied");
+        $mitglieder->select('*');
+        $mitglieder->where("mitglied.mitgliedEmail", $email);
+
+        $result = $mitglieder->get()->getResultArray();
+
+        if (sizeof($result) < 1) return null;
+
+        return $result[0];
+    }
 }
