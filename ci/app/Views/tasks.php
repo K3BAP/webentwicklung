@@ -12,8 +12,8 @@
         <tbody>
         <?php if (isset($aufgaben)): foreach ($aufgaben as $item): ?>
             <tr>
-                <td><?php echo(isset($item['name']) ? $item['name'] : ""); ?></td>
-                <td><?php echo(isset($item['beschreibung']) ? $item['beschreibung'] : ""); ?></td>
+                <td><?php echo(isset($item['aufgabeName']) ? $item['aufgabeName'] : ""); ?></td>
+                <td><?php echo(isset($item['aufgabeBeschreibung']) ? $item['aufgabeBeschreibung'] : ""); ?></td>
                 <td><?php echo(isset($item['reiter']) ? $item['reiter'] : ""); ?></td>
                 <td><?php echo(isset($item['zustaendig']) ? $item['zustaendig'] : ""); ?></td>
                 <td class="text-end"><i class="fa-regular fa-trash-can text-primary m-3"></i> <i class="fa-regular fa-pen-to-square text-primary m-3"></i></td>

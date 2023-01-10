@@ -10,8 +10,8 @@
         <tbody>
         <?php if (isset($reiter)): foreach ($reiter as $item): ?>
         <tr>
-            <td><?php echo(isset($item['name']) ? $item['name'] : ""); ?></td>
-            <td><?php echo(isset($item['beschreibung']) ? $item['beschreibung'] : ""); ?></td>
+            <td><?php echo(isset($item['reiterName']) ? $item['reiterName'] : ""); ?></td>
+            <td><?php echo(isset($item['reiterBeschreibung']) ? $item['reiterBeschreibung'] : ""); ?></td>
             <td class="text-end"><i class="fa-regular fa-trash-can text-primary m-3"></i> <i class="fa-regular fa-pen-to-square text-primary m-3"></i></td>
         </tr>
         <?php endforeach; endif;?>

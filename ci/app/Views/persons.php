@@ -11,8 +11,8 @@
         <tbody>
         <?php if (isset($personen)): foreach ($personen as $item): ?>
             <tr>
-                <td><?php echo(isset($item['name']) ? $item['name'] : ""); ?></td>
-                <td><?php echo(isset($item['email']) ? $item['email'] : ""); ?></td>
+                <td><?php echo(isset($item['mitgliedUsername']) ? $item['mitgliedUsername'] : ""); ?></td>
+                <td><?php echo(isset($item['mitgliedEmail']) ? $item['mitgliedEmail'] : ""); ?></td>
                 <td><input type="checkbox" class="form-check-input" <?php if (isset($item['in_projekt']) and $item['in_projekt']): echo('checked=checked'); endif; ?> ></td>
                 <td class="text-end"><i class="fa-regular fa-trash-can text-primary m-3"></i> <i class="fa-regular fa-pen-to-square text-primary m-3"></i></td>
             </tr>

@@ -8,21 +8,11 @@ class ReiterModel extends Model
 
     public function getReiter()
     {
-        $reiter = array(
-            array(
-                "name" => "ToDo",
-                "beschreibung" => "Dinge, die erledigt werden müssen."
-            ),
-            array(
-                "name" => "Erledigt",
-                "beschreibung" => "Dinge, die erledigt sind."
-            ),
-            array(
-                "name" => "Verschoben",
-                "beschreibung" => "Dinge, die später erledigt werden."
-            ),
-        );
+        $reiter = $this->db->table("reiter");
+        $reiter->select("*");
+        $reiter->orderBy("reiterName");
 
-        return $reiter;
+        $result = $reiter->get();
+        return $result->getResultArray();
     }
 }
