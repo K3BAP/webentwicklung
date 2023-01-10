@@ -28,4 +28,15 @@ class MitgliedModel extends Model
 
         return $result[0];
     }
+
+    public function createMitglied(string $mitgliedUsername, string $mitgliedEmail, string $mitgliedPasswordHash)
+    {
+        $mitglieder = $this->db->table("mitglied");
+        $mitglieder->insert(array(
+            'mitgliedUsername' => $mitgliedUsername,
+            'mitgliedEmail' => $mitgliedEmail,
+            'mitgliedPassword' => $mitgliedPasswordHash
+        ));
+        return $this->db->insertID();
+    }
 }
