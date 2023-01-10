@@ -2,24 +2,24 @@
 
 namespace App\Controllers;
 
-use App\Models\AufgabenModel;
-use App\Models\PersonenModel;
+use App\Models\AufgabeModel;
+use App\Models\MitgliedModel;
 use App\Models\ReiterModel;
 
 class Persons extends BaseController
 {
-    private PersonenModel $PersonenModel;
+    private MitgliedModel $PersonenModel;
 
     public function __construct() {
 
-        $this->PersonenModel = new PersonenModel();
+        $this->PersonenModel = new MitgliedModel();
 
     }
     public function index()
     {
         $headData['title'] = 'Aufgaben';
         $headData['heading'] = 'Aufgabenplaner: Aufgaben';
-        $data['personen'] = $this->PersonenModel->getPersonen();
+        $data['personen'] = $this->PersonenModel->getMitglieder();
 
         echo view('templates/header', $headData);
         echo view('templates/sidebar');

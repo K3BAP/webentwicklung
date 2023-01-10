@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\AufgabenModel;
-use App\Models\PersonenModel;
+use App\Models\AufgabeModel;
+use App\Models\MitgliedModel;
 use App\Models\ReiterModel;
 
 class Projects extends BaseController

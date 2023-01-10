@@ -2,18 +2,18 @@
 
 namespace App\Controllers;
 
-use App\Models\AufgabenModel;
-use App\Models\PersonenModel;
+use App\Models\AufgabeModel;
+use App\Models\MitgliedModel;
 use App\Models\ReiterModel;
 
 class Todos extends BaseController
 {
-    private AufgabenModel $AufgabenModel;
+    private AufgabeModel $AufgabenModel;
     private ReiterModel $ReiterModel;
 
     public function __construct() {
 
-        $this->AufgabenModel = new AufgabenModel();
+        $this->AufgabenModel = new AufgabeModel();
         $this->ReiterModel = new ReiterModel();
 
     }
