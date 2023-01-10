@@ -17,8 +17,8 @@ class Persons extends BaseController
     }
     public function index()
     {
-        $headData['title'] = 'Aufgaben';
-        $headData['heading'] = 'Aufgabenplaner: Aufgaben';
+        $headData['title'] = 'Mitglieder';
+        $headData['heading'] = 'Aufgabenplaner: Mitglieder';
         $data['personen'] = $this->PersonenModel->getMitglieder();
 
         echo view('templates/header', $headData);
