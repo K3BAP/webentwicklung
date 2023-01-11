@@ -1,7 +1,7 @@
  <div class="row">
         <div class="col-xxl-4 col-lg-3 col-md-2 col-sm-1 d-none d-sm-block"></div>
         <div class="col-xxl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12">
-            <?php echo form_open('login/index', array('role' => 'form')) ?>
+            <?php echo form_open('login', array('role' => 'form')) ?>
                 <div class="form-group my-1">
                     <label for="loginEmail">Email-Adresse:</label>
                     <input id="loginEmail" name="email" type="text" class="form-control" placeholder="Email-Adresse eingeben">
