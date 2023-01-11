@@ -1,4 +1,24 @@
- <div class="col-8">
+<!-- MODAL DELETE DIALOG -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="deleteModalLabel">Wirklich löschen?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Soll das Mitglied wirklich gelöscht werden?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Abbrechen</button>
+                <a id="deleteBtn" type="button" class="btn btn-danger" >Löschen</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="col-8">
     <table class="table table-hover mb-5">
         <thead>
         <tr class="table-light">
@@ -15,7 +35,15 @@
                 <td><?php echo($item['mitgliedEmail'] ?? ""); ?></td>
                 <td><input type="checkbox" class="form-check-input" onclick="return false;" <?php if (isset($item['in_projekt']) and $item['in_projekt']): echo('checked=checked'); endif; ?> ></td>
                 <td class="text-end">
-                    <a href="<?php echo base_url("./persons/delete?id=") . $item['mitgliedId'] ?>" class="fa-regular fa-trash-can text-primary m-3"></a>
+                    <!-- a href="<?php echo base_url("./persons/delete?id=") . $item['mitgliedId'] ?>" class="fa-regular fa-trash-can text-primary m-3"></a -->
+                    <a
+                            class="fa-regular fa-trash-can text-primary m-3"
+                            role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-bs-username="<?= $item['mitgliedUsername'] ?>"
+                            data-bs-delete-link="<?= base_url("persons/delete?id=") . $item['mitgliedId'] ?>"
+                    ></a>
                     <a href="<?php echo base_url("./persons?editId=") . $item['mitgliedId'] ?>" class="fa-regular fa-pen-to-square text-primary m-3"></a>
                 </td>
             </tr>
@@ -55,3 +83,6 @@
         <button class="btn btn-info text-white" href="<?php echo base_url('./persons'); ?>">Reset</button>
     <?php echo form_close() ?>
 </div>
+
+<!-- JS -->
+<script type="text/javascript" src="<?= base_url("./JS/persons.js") ?>" ></script>
