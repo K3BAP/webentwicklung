@@ -18,9 +18,6 @@
                 <div class="form-group">
                     Noch nicht registriert? <a class="link-primary text-decoration-none" href="">Registrierung</a>
                 </div>
-                <div class="form-group mt-2">
-                    Da der Login-Vorgang noch nicht realisiert wurde: <a class="link-primary text-decoration-none" href="<?php echo base_url("/todos/") ?>">Überspringen</a>
-                </div>
             <?php echo form_close()?>
         </div>
     </div>

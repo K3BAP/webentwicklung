@@ -16,7 +16,7 @@
                 <td><input type="checkbox" class="form-check-input" onclick="return false;" <?php if (isset($item['in_projekt']) and $item['in_projekt']): echo('checked=checked'); endif; ?> ></td>
                 <td class="text-end">
                     <a href="<?php echo base_url("./persons/delete?id=") . $item['mitgliedId'] ?>" class="fa-regular fa-trash-can text-primary m-3"></a>
-                    <a href="<?php echo base_url("./persons/index?editId=") . $item['mitgliedId'] ?>" class="fa-regular fa-pen-to-square text-primary m-3"></a>
+                    <a href="<?php echo base_url("./persons?editId=") . $item['mitgliedId'] ?>" class="fa-regular fa-pen-to-square text-primary m-3"></a>
                 </td>
             </tr>
         <?php endforeach; endif;?>
@@ -28,7 +28,7 @@
             <?php if (!empty($editPerson)) echo('value="' . $editPerson['mitgliedId'] . '"'); ?>
         >
         <div class="form-group mb-2">
-            <label for="usernameInput" class="mb-1">Bezeichnung des Reiters:</label>
+            <label for="usernameInput" class="mb-1">Name des Mitglieds:</label>
             <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Username"
                 <?php if (!empty($editPerson)) echo('value="' . $editPerson['mitgliedUsername'] . '"'); ?>
             >
