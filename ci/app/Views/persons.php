@@ -37,12 +37,12 @@
                 <td class="text-end">
                     <!-- a href="<?php echo base_url("./persons/delete?id=") . $item['mitgliedId'] ?>" class="fa-regular fa-trash-can text-primary m-3"></a -->
                     <a
-                            class="fa-regular fa-trash-can text-primary m-3"
-                            role="button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#deleteModal"
-                            data-bs-username="<?= $item['mitgliedUsername'] ?>"
-                            data-bs-delete-link="<?= base_url("persons/delete?id=") . $item['mitgliedId'] ?>"
+                        class="fa-regular fa-trash-can text-primary m-3"
+                        role="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                        data-bs-username="<?= $item['mitgliedUsername'] ?>"
+                        data-bs-delete-link="<?= base_url("persons/delete?id=") . $item['mitgliedId'] ?>"
                     ></a>
                     <a href="<?php echo base_url("./persons?editId=") . $item['mitgliedId'] ?>" class="fa-regular fa-pen-to-square text-primary m-3"></a>
                 </td>
