@@ -17,6 +17,9 @@
     </div>
 </div>
 
+<!-- JS -->
+<script type="text/javascript" defer src="<?= base_url("./JS/persons.js") ?>" ></script>
+
 <!-- PAGE CONTENT -->
 <div class="col-8">
     <table class="table table-hover mb-5">
@@ -83,6 +86,3 @@
         <button class="btn btn-info text-white" href="<?php echo base_url('./persons'); ?>">Reset</button>
     <?php echo form_close() ?>
 </div>
-
-<!-- JS -->
-<script type="text/javascript" src="<?= base_url("./JS/persons.js") ?>" ></script>
