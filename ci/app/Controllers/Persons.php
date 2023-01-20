@@ -23,8 +23,6 @@ class Persons extends BaseController
 
     public function index()
     {
-        if (empty($this->session->get("sessionUserId"))) return redirect()->to(base_url("./login"));
-
         $headData['title'] = 'Mitglieder';
         $headData['heading'] = 'Aufgabenplaner: Mitglieder';
         $data['personen'] = $this->mitgliedModel->getMitglieder();
@@ -51,8 +49,6 @@ class Persons extends BaseController
 
     public function save()
     {
-        if (empty($this->session->get("sessionUserId"))) return redirect()->to(base_url("./login"));
-
         if (empty($_POST['userId']))
         {
             // Prüfe, dass alle Felder ausgefüllt sind
@@ -94,8 +90,6 @@ class Persons extends BaseController
 
     public function delete()
     {
-        if (empty($this->session->get("sessionUserId"))) return redirect()->to(base_url("./login"));
-
         if (!empty($_GET['id'])) {
             $this->mitgliedModel->deleteMitglied($_GET['id']);
         }

@@ -41,4 +41,18 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+    public $login = [
+    'email'         => 'required|valid_email',
+    'password'      => 'required',
+    'agbaccept'     => 'required',
+    ];
+
+    public $login_errors = [
+        'email'         => [
+            'valid_email'   => 'Bitte eine gültige E-Mail-Adresse angeben',
+            'required'      => 'Bitte eine E-Mail-Adresse angeben',
+            ],
+        'password'      => ['required'              => 'Bitte das Passwort eingeben'],
+        'agbaccept'     => ['required'              => 'Die AGB müssen akzeptiert werden'],
+    ];
 }

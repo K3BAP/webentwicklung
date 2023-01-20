@@ -37,6 +37,7 @@ abstract class BaseController extends Controller
      */
     protected $helpers = [];
     protected \CodeIgniter\Session\Session $session;
+    protected \CodeIgniter\Validation\Validation $validation;
 
     /**
      * Constructor.
@@ -49,5 +50,6 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         $this->session = \Config\Services::session();
+        $this->validation = \Config\Services::validation();
     }
 }
