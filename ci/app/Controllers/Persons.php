@@ -6,6 +6,7 @@ use App\Models\AufgabeModel;
 use App\Models\MitgliedModel;
 use App\Models\ProjektModel;
 use App\Models\ReiterModel;
+use Exception;
 
 class Persons extends BaseController
 {
@@ -54,12 +55,17 @@ class Persons extends BaseController
             // Prüfe, dass alle Felder ausgefüllt sind
             if (empty($_POST['username']) | empty($_POST['email']) | empty($_POST['password'])) return redirect()->to(base_url('./persons'));
 
-            // Speichere neuen Kunden
-            $inserted_id = $this->mitgliedModel->createMitglied(
-                $_POST['username'],
-                $_POST['email'],
-                $_POST['password']
-            );
+            try {
+                // Speichere neuen Kunden
+                $inserted_id = $this->mitgliedModel->createMitglied(
+                    $_POST['username'],
+                    $_POST['email'],
+                    $_POST['password']
+                );
+            }
+            catch (Exception $e) {
+                return redirect()->to(base_url('./persons'));
+            }
 
             // Lege ggf. Verknüpfung zu aktuellem Projekt an
             if (!empty($_POST['assigned'])) {
@@ -74,8 +80,14 @@ class Persons extends BaseController
             $password = empty($_POST['password']) ? "" : $_POST['password'];
             $assigned = !empty($_POST['assigned']);
 
-            // Update table Mitglied
-            $this->mitgliedModel->updateMitglied($_POST['userId'], $username, $email, $password, $assigned);
+
+            try {
+                // Update table Mitglied
+                $this->mitgliedModel->updateMitglied($_POST['userId'], $username, $email, $password, $assigned);
+            }
+            catch (Exception $e) {
+                return redirect()->to(base_url('./persons'));
+            }
 
             // Update Project Assignment
             if ($assigned && !$this->projektModel->mitgliedInProjekt($_POST['userId'], $this->session->get("currentProjectId")))
