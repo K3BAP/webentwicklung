@@ -48,8 +48,18 @@ class Login extends BaseController
             $this->showLoginView($data);
         }
     }
+
+    public function logout() {
+        $this->session->destroy();
+        $data['showLogoutMessage'] = true;
+        $this->showLoginView($data);
+    }
+
     public function index()
     {
+        if (!empty($this->session->get('sessionUserId'))) {
+            return redirect()->to(base_url("./todos"));
+        };
         $data = array();
         $this->showLoginView($data);
     }
@@ -57,7 +67,6 @@ class Login extends BaseController
         $headData['title'] = 'Login';
         $headData['heading'] = 'Aufgabenplaner: Login';
 
-        $this->session->destroy(); //Zerstöre session vor neuer Anmeldung
         echo view('templates/header', $headData);
         echo view('login', $data);
         echo view('templates/footer');

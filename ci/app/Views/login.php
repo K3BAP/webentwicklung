@@ -1,6 +1,13 @@
  <div class="row">
         <div class="col-xxl-4 col-lg-3 col-md-2 col-sm-1 d-none d-sm-block"></div>
         <div class="col-xxl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <?php if (!empty($showLogoutMessage)): ?>
+            <div class="alert alert-primary alert-dismissible fade show">
+                Erfolgreich abgemeldet!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endif; ?>
+
             <?= form_open('login', array('role' => 'form')) ?>
                 <div class="form-group my-1">
                     <label for="loginEmail">Email-Adresse:</label>
