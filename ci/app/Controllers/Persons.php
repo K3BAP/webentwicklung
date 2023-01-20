@@ -28,18 +28,11 @@ class Persons extends BaseController
         $headData['heading'] = 'Aufgabenplaner: Mitglieder';
         $data['personen'] = $this->mitgliedModel->getMitglieder();
 
-        // Check if a person should be edited
-        if (!empty($_GET['editId']))
-        {
-            $data['editPerson'] = $this->mitgliedModel->getMitglied($_GET['editId']);
-            $data['editPerson']['in_projekt'] = $this->projektModel->mitgliedInProjekt($data['editPerson']['mitgliedId'], $this->session->get('currentProjectId'));
-            $data['showPasswordField'] = ($data['editPerson']['mitgliedId'] == $this->session->get('sessionUserId'));
-        }
-
         // For each person check if it is assigned to current project (for checkbox in table)
         foreach ($data['personen'] as &$person)
         {
             $person['in_projekt'] = $this->projektModel->mitgliedInProjekt($person['mitgliedId'], $this->session->get('currentProjectId'));
+            $person['ist_angemeldet'] = ($person['mitgliedId'] == $this->session->get('sessionUserId'));
         }
 
         echo view('templates/header', $headData);
