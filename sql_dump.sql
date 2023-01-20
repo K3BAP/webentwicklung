@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 10. Jan 2023 um 18:18
+-- Erstellungszeit: 20. Jan 2023 um 18:41
 -- Server-Version: 10.4.27-MariaDB
 -- PHP-Version: 8.2.0
 
@@ -175,7 +175,8 @@ ALTER TABLE `aufgabe_mitglied`
 -- Indizes für die Tabelle `mitglied`
 --
 ALTER TABLE `mitglied`
-  ADD PRIMARY KEY (`mitgliedId`);
+  ADD PRIMARY KEY (`mitgliedId`),
+  ADD UNIQUE KEY `mitgliedEmail` (`mitgliedEmail`);
 
 --
 -- Indizes für die Tabelle `projekt`
@@ -211,7 +212,7 @@ ALTER TABLE `aufgabe`
 -- AUTO_INCREMENT für Tabelle `mitglied`
 --
 ALTER TABLE `mitglied`
-  MODIFY `mitgliedId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mitgliedId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `projekt`
