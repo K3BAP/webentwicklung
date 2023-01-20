@@ -52,8 +52,7 @@ editModal.addEventListener('show.bs.modal', event => {
         usernameInput.setAttribute('value', username);
         emailInput.setAttribute('value', email);
         if (assigned) assignedCheck.setAttribute('checked', 'checked');
-        console.log(showpw);
-        if (showpw != true) passwordInput.setAttribute('disabled' , 'true');
+        if (showpw != 'true') passwordInput.setAttribute('disabled' , 'true');
         else passwordInput.removeAttribute('disabled');
     }
     else {
