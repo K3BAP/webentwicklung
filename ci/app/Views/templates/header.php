@@ -14,6 +14,6 @@
 <body>
     <div class="container-fluid">
         <div class="bg-light mt-3 mb-3 p-5">
-            <h1 class="text-center"><?= $heading; ?></h1>
+            <h1 class="display-4 text-center"><?= $heading; ?></h1>
         </div>
         <div class="row">
