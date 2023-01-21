@@ -70,8 +70,13 @@ class Persons extends BaseController
             // Update bestehenden Kunden
             $username = empty($_POST['username']) ? "" : $_POST['username'];
             $email = empty($_POST['email']) ? "" : $_POST['email'];
-            $password = empty($_POST['password']) ? "" : $_POST['password'];
             $assigned = !empty($_POST['assigned']);
+
+            // Verhindere Passwortänderung wenn nicht eingeloggt
+            if ($this->session->get('sessionUserId') == $_POST['userId']) {
+                $password = empty($_POST['password']) ? "" : $_POST['password'];
+            }
+            else { $password = ''; }
 
 
             try {
