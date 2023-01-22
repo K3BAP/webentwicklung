@@ -76,25 +76,24 @@
             <tr>
                 <td class="data-username"><?php echo($item['mitgliedUsername'] ?? ""); ?></td>
                 <td class="data-email"><?php echo($item['mitgliedEmail'] ?? ""); ?></td>
-                <td><input type="checkbox" class="form-check-input data-assigned" onclick="return false;" <?php if (isset($item['in_projekt']) and $item['in_projekt']): echo('checked=checked'); endif; ?> ></td>
+                <td><input type="checkbox" class="form-check-input m-3 data-assigned" onclick="return false;" <?php if (isset($item['in_projekt']) and $item['in_projekt']): echo('checked=checked'); endif; ?> ></td>
                 <td class="text-end">
-                    <!-- a href="<?php echo base_url("./persons/delete?id=") . $item['mitgliedId'] ?>" class="fa-regular fa-trash-can text-primary m-3"></a -->
                     <a
-                        class="fa-regular fa-trash-can text-primary m-3"
-                        role="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#deleteModal"
-                        data-bs-username="<?= $item['mitgliedUsername'] ?>"
-                        data-bs-delete-link="<?= base_url("persons/delete?id=") . $item['mitgliedId'] ?>"
+                            class="fa-regular fa-pen-to-square text-primary m-3"
+                            role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModal"
+                            data-bs-mitgliedid="<?= $item['mitgliedId'] ?>"
+                            data-bs-pwplaceholder="unverändert"
+                            data-bs-showpw=<?= $item['ist_angemeldet'] ? 'true' : 'false' ?>
                     ></a>
                     <a
-                        class="fa-regular fa-pen-to-square text-primary m-3"
-                        role="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editModal"
-                        data-bs-mitgliedid="<?= $item['mitgliedId'] ?>"
-                        data-bs-pwplaceholder="unverändert"
-                        data-bs-showpw=<?= $item['ist_angemeldet'] ? 'true' : 'false' ?>
+                            class="fa-regular fa-trash-can text-danger m-3"
+                            role="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-bs-username="<?= $item['mitgliedUsername'] ?>"
+                            data-bs-delete-link="<?= base_url("persons/delete?id=") . $item['mitgliedId'] ?>"
                     ></a>
                 </td>
             </tr>
@@ -102,10 +101,10 @@
         </tbody>
     </table>
     <a
-            class="btn btn-primary"
+            class="btn btn-outline-primary"
             role="button"
             data-bs-toggle="modal"
             data-bs-target="#editModal"
             data-bs-pwplaceholder="Passwort eingeben"
-    >Neues Mitglied</a>
+    > <i class="fa-regular fa-plus"></i> </a>
 </div>
