@@ -14,7 +14,6 @@ deleteModal.addEventListener('show.bs.modal', event => {
     const deleteBtn = deleteModal.querySelector('#deleteBtn');
 
     modalText.textContent = `Soll das Mitglied "${username}" wirklich gelöscht werden?`;
-    console.log(del_link);
     deleteBtn.setAttribute("href", del_link);
 });
 
