@@ -29,24 +29,47 @@
     </div>
 </div>
 
+<!-- JS -->
+<script type="text/javascript" defer src="<?= base_url("./JS/projects.js") ?>" ></script>
+
 <!-- PAGE CONTENT -->
 <div class="col-8">
-    <form class="mb-3">
-        <h2>Projekt auswählen:</h2>
-        <select class="form-select">
-            <option value=-1 label="- bitte auswählen -"></option>
-            <?php if(!empty($projects)): foreach($projects as $item): ?>
-            <option value=<?= $item['projektId'] ?> label="<?= $item['projektName'] ?>"></option>
-            <?php endforeach; endif; ?>
-        </select>
-        <button class="btn btn-primary mt-3">Auswählen</button>
-        <button class="btn btn-primary mt-3">Bearbeiten</button>
-        <a
-                class="btn btn-primary mt-3"
-                role="button"
-                data-bs-toggle="modal"
-                data-bs-target="#editModal"
-        >Neu</a>
-        <button class="btn btn-danger mt-3">Löschen</button>
-    </form>
+    <h2>Projekt auswählen:</h2>
+    <div class="row">
+        <div class="col-10">
+            <select id="projectSelect" class="form-select">
+                <option value=-1 label="- bitte auswählen -"></option>
+                <?php if(!empty($projects)): foreach($projects as $item): ?>
+                    <option
+                            value=<?= $item['projektId'] ?>
+                            label="<?= $item['projektName'] ?>"
+                            data-bs-beschreibung="<?= $item['projektBeschreibung'] ?>"
+                    ></option>
+                <?php endforeach; endif; ?>
+            </select>
+        </div>
+
+        <div class="btn-toolbar col-2" role="toolbar">
+            <div class="btn-group me-2">
+                <a
+                        class="btn btn-primary"
+                        role="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal"
+                        data-bs-mode="edit"
+                ><i class="fa-regular fa-pen-to-square"></i></a>
+                <button class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
+            </div>
+            <div class="btn-group">
+                <a
+                        class="btn btn-outline-primary"
+                        role="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal"
+                        data-bs-mode="new"
+                ><i class="fa-regular fa-plus"></i></a>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary mt-3">Projekt laden</button>
 </div>
