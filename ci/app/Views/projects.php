@@ -38,7 +38,6 @@
     <div class="row">
         <div class="col-10">
             <select id="projectSelect" class="form-select">
-                <option value=-1 label="- bitte auswählen -"></option>
                 <?php if(!empty($projects)): foreach($projects as $item): ?>
                     <option
                             value=<?= $item['projektId'] ?>

@@ -80,4 +80,18 @@ class ProjektModel extends Model
         ));
         return $this->db->insertID();
     }
+
+    public function updateProject(int $projektId, string $projektName, string $projektBeschreibung)
+    {
+        if (empty($projektId)) return redirect()->to(base_url("./projects"));
+
+        $updateStatement = array();
+        if (!empty($projektName)) $updateStatement['projektName'] = $projektName;
+        if (!empty($projektBeschreibung)) $updateStatement['projektBeschreibung'] = $projektBeschreibung;
+
+        $projekte = $this->db->table("projekt");
+        $projekte->where("projektId", $projektId);
+
+        $projekte->update($updateStatement);
+    }
 }

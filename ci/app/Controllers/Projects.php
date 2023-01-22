@@ -48,7 +48,17 @@ class Projects extends BaseController
         }
         else
         {
+            // Update bestehendes Projekt
+            $projektName = empty($_POST['projektName']) ? "" : $_POST['projektName'];
+            $projektBeschreibung = empty($_POST['beschreibung']) ? "" : $_POST['beschreibung'];
 
+            try {
+                // Update table Mitglied
+                $this->projektModel->updateProject($_POST['projektId'], $projektName, $projektBeschreibung);
+            }
+            catch (Exception $e) {
+                return redirect()->to(base_url('./persons'));
+            }
         }
 
         return redirect()->to(base_url('./projects'));
