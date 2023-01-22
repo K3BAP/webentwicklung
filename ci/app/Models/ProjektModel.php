@@ -71,4 +71,13 @@ class ProjektModel extends Model
         ));
         $projekt_mitglied->delete();
     }
+
+    public function createProject(string $projektName, string $projektBeschreibung) {
+        $mitglieder = $this->db->table("projekt");
+        $mitglieder->insert(array(
+            'projektName' => $projektName,
+            'projektBeschreibung' => $projektBeschreibung
+        ));
+        return $this->db->insertID();
+    }
 }

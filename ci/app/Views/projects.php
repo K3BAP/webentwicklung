@@ -11,12 +11,12 @@
 
                 <input type="hidden" id="projektIdInput" name="projektId" readonly>
                 <div class="form-group mb-3">
-                    <label class="form-label" for="projektInput">Projektname:</label>
-                    <input class="form-control" id="projektInput" placeholder="Projekt">
+                    <label class="form-label" for="projektNameInput">Projektname:</label>
+                    <input class="form-control" id="projektNameInput" name="projektName" placeholder="Projekt">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="beschreibungTextArea">Projektbeschreibung:</label>
-                    <textarea class="form-control" id="beschreibungTextArea" placeholder="Beschreibung" rows="4"></textarea>
+                    <textarea class="form-control" id="beschreibungTextArea" name="beschreibung" placeholder="Beschreibung" rows="4"></textarea>
                 </div>
 
             </div>
@@ -34,9 +34,9 @@
     <form class="mb-3">
         <h2>Projekt auswählen:</h2>
         <select class="form-select">
-            <option label="- bitte auswählen -"></option>
+            <option value=-1 label="- bitte auswählen -"></option>
             <?php if(!empty($projects)): foreach($projects as $item): ?>
-            <option value="<?= $item['projektId'] ?>" label="<?= $item['projektName'] ?>"></option>
+            <option value=<?= $item['projektId'] ?> label="<?= $item['projektName'] ?>"></option>
             <?php endforeach; endif; ?>
         </select>
         <button class="btn btn-primary mt-3">Auswählen</button>

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ProjektModel;
+use Exception;
 
 class Projects extends BaseController
 {
@@ -25,5 +26,31 @@ class Projects extends BaseController
         echo view('templates/sidebar');
         echo view('projects', $data);
         echo view('templates/footer');
+    }
+
+    public function save() {
+        if (empty($_POST['projektId']))
+        {
+            // Prüfe, dass alle Felder ausgefüllt sind
+            if (empty($_POST['projektName']) | empty($_POST['beschreibung'])) return redirect()->to(base_url('./projects'));
+
+            try {
+                // Speichere neues Projekt und füge aktuellen Benutzer zum Projekt hinzu
+                $inserted_id = $this->projektModel->createProject(
+                    $_POST['projektName'],
+                    $_POST['beschreibung']
+                );
+                $this->projektModel->addMitgliedToProject($this->session->get("sessionUserId"), $inserted_id);
+            }
+            catch (Exception $e) {
+                return redirect()->to(base_url('./projects'));
+            }
+        }
+        else
+        {
+
+        }
+
+        return redirect()->to(base_url('./projects'));
     }
 }
