@@ -73,8 +73,8 @@ class ProjektModel extends Model
     }
 
     public function createProject(string $projektName, string $projektBeschreibung) {
-        $mitglieder = $this->db->table("projekt");
-        $mitglieder->insert(array(
+        $projekte = $this->db->table("projekt");
+        $projekte->insert(array(
             'projektName' => $projektName,
             'projektBeschreibung' => $projektBeschreibung
         ));
@@ -93,5 +93,12 @@ class ProjektModel extends Model
         $projekte->where("projektId", $projektId);
 
         $projekte->update($updateStatement);
+    }
+
+    public function deleteProject(int $projektId)
+    {
+        $projekte = $this->db->table("projekt");
+        $projekte->where("projektId", $projektId);
+        $projekte->delete();
     }
 }

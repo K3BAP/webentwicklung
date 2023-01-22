@@ -63,4 +63,13 @@ class Projects extends BaseController
 
         return redirect()->to(base_url('./projects'));
     }
+
+    public function delete()
+    {
+        if (!empty($_GET['id'])) {
+            $this->projektModel->deleteProject($_GET['id']);
+        }
+
+        return redirect()->to(base_url("projects"));
+    }
 }
