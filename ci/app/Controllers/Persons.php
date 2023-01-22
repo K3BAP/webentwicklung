@@ -81,7 +81,7 @@ class Persons extends BaseController
 
             try {
                 // Update table Mitglied
-                $this->mitgliedModel->updateMitglied($_POST['userId'], $username, $email, $password, $assigned);
+                $this->mitgliedModel->updateMitglied($_POST['userId'], $username, $email, $password);
             }
             catch (Exception $e) {
                 return redirect()->to(base_url('./persons'));
