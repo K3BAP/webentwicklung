@@ -28,7 +28,10 @@ class Login extends BaseController
 
                 $projekte = $this->projektModel->getProjekteForMitglied($loginCandidate['mitgliedId']);
                 if (!empty($projekte["0"])) {
-                    $this->session->set("currentProjectId", $projekte[0]["projektId"]);
+                    $this->session->set([
+                        "currentProjectId"      => $projekte[0]["projektId"],
+                        "currentProjectName"    => $projekte[0]["projektName"]
+                        ]);
                 }
 
                 return redirect()->to(base_url("./todos"));

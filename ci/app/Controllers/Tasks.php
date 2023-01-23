@@ -21,8 +21,11 @@ class Tasks extends BaseController
         $headData['heading'] = 'Aufgabenplaner: Aufgaben';
         $data['aufgaben'] = $this->AufgabenModel->getAufgaben();
 
+        $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
+        $navbarData['currentProjectName'] = $this->session->get('currentProjectName');
+
         echo view('templates/header', $headData);
-        echo view('templates/sidebar');
+        echo view('templates/sidebar', $navbarData);
         echo view('tasks', $data);
         echo view('templates/footer');
     }

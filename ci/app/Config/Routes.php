@@ -41,6 +41,7 @@ $routes->get('logout', 'Login::logout');
 $routes->get('todos', 'Todos::index');
 $routes->get('projects', 'Projects::index');
 $routes->get('projects/delete', 'Projects::delete');
+$routes->get('projects/load', 'Projects::load');
 $routes->get('tabs', 'Tabs::index');
 $routes->get('tasks', 'Tasks::index');
 $routes->get('persons', 'Persons::index');

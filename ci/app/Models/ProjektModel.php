@@ -6,14 +6,16 @@ class ProjektModel extends Model
 {
 
 
-    public function getProjekte()
+    public function getProjekte(int $projektId = null)
     {
         $projekte = $this->db->table("projekt");
         $projekte->select("*");
+        if (!empty($projektId)) $projekte->where("projektId", $projektId);
         $projekte->orderBy("projektName");
 
         $result = $projekte->get();
-        return $result->getResultArray();
+        if (!empty($projektId)) return $result->getRowArray();
+        else                    return $result->getResultArray();
     }
 
     public function getProjekteForMitglied(int $mitgliedId)

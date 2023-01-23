@@ -35,8 +35,11 @@ class Persons extends BaseController
             $person['ist_angemeldet'] = ($person['mitgliedId'] == $this->session->get('sessionUserId'));
         }
 
+        $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
+        $navbarData['currentProjectName'] = $this->session->get('currentProjectName');
+
         echo view('templates/header', $headData);
-        echo view('templates/sidebar');
+        echo view('templates/sidebar', $navbarData);
         echo view('persons', $data);
         echo view('templates/footer');
     }

@@ -22,8 +22,11 @@ class Projects extends BaseController
 
         $data['projects'] = $this->projektModel->getProjekte();
 
+        $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
+        $navbarData['currentProjectName'] = $this->session->get('currentProjectName');
+
         echo view('templates/header', $headData);
-        echo view('templates/sidebar');
+        echo view('templates/sidebar', $navbarData);
         echo view('projects', $data);
         echo view('templates/footer');
     }
@@ -68,8 +71,22 @@ class Projects extends BaseController
     {
         if (!empty($_GET['id'])) {
             $this->projektModel->deleteProject($_GET['id']);
+            if ($this->session->get('currentProjectId') == $_GET['id'])
+                $this->session->remove(['currentProjectId', 'currentProjectName']);
         }
 
+        return redirect()->to(base_url("projects"));
+    }
+
+    public function load()
+    {
+        if (!empty($_GET['id'])) {
+            $project = $this->projektModel->getProjekte($_GET['id']);
+            $this->session->set([
+                'currentProjectId'      => $project['projektId'],
+                'currentProjectName'    => $project['projektName']
+            ]);
+        }
         return redirect()->to(base_url("projects"));
     }
 }

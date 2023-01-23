@@ -20,12 +20,15 @@ class Todos extends BaseController
     public function index()
     {
         $headData['title'] = 'Todos';
-        $headData['heading'] = 'Aufgabenplaner: Todos (Aktuelles Projekt)';
+        $headData['heading'] = $this->session->get('currentProjectName');;
         $data['reiter'] = $this->ReiterModel->getReiter();
         $data['aufgaben'] = $this->AufgabenModel->getAufgaben();
 
+        $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
+        $navbarData['currentProjectName'] = $this->session->get('currentProjectName');
+
         echo view('templates/header', $headData);
-        echo view('templates/sidebar');
+        echo view('templates/sidebar', $navbarData);
         echo view('todos', $data);
         echo view('templates/footer');
     }

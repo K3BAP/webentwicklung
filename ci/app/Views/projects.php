@@ -54,10 +54,11 @@
 
 <!-- PAGE CONTENT -->
 <div class="col-8">
+    <?= form_open("projects/load", array('role' => 'form', 'method' => 'get')) ?>
     <h2>Projekt auswählen:</h2>
     <div class="row">
         <div class="col-10">
-            <select id="projectSelect" class="form-select">
+            <select id="projectSelect" class="form-select" name="id">
                 <?php if(!empty($projects)): foreach($projects as $item): ?>
                     <option
                             value=<?= $item['projektId'] ?>
@@ -96,5 +97,6 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-primary mt-3">Projekt laden</button>
+    <button class="btn btn-primary mt-3" type="submit">Projekt laden</button>
+    <?= form_close() ?>
 </div>

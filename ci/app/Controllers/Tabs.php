@@ -23,8 +23,11 @@ class Tabs extends BaseController
         $headData['heading'] = 'Aufgabenplaner: Reiter';
         $data['reiter'] = $this->ReiterModel->getReiter();
 
+        $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
+        $navbarData['currentProjectName'] = $this->session->get('currentProjectName');
+
         echo view('templates/header', $headData);
-        echo view('templates/sidebar');
+        echo view('templates/sidebar', $navbarData);
         echo view('tabs', $data);
         echo view('templates/footer');
     }
