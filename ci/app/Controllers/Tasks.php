@@ -44,5 +44,10 @@ class Tasks extends BaseController
     public function delete()
     {
         var_dump($_GET);
+        if (!empty($_GET['id'])) {
+            $this->aufgabenModel->deleteAufgabe($_GET['id']);
+        }
+
+        return redirect()->to(base_url("tasks"));
     }
 }

@@ -32,4 +32,11 @@ class AufgabeModel extends Model
         $result = $aufgaben->get();
         return $result->getResultArray();
     }
+
+    public function deleteAufgabe(int $aufgabeId)
+    {
+        $mitglieder = $this->db->table("aufgabe");
+        $mitglieder->where("aufgabeId", $aufgabeId);
+        $mitglieder->delete();
+    }
 }
