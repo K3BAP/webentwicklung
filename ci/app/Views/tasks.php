@@ -12,11 +12,14 @@
         <tbody>
         <?php if (isset($aufgaben)): foreach ($aufgaben as $item): ?>
             <tr>
-                <td><?php echo(isset($item['aufgabeName']) ? $item['aufgabeName'] : ""); ?></td>
-                <td><?php echo(isset($item['aufgabeBeschreibung']) ? $item['aufgabeBeschreibung'] : ""); ?></td>
-                <td><?php echo(isset($item['reiterName']) ? $item['reiterName'] : ""); ?></td>
-                <td><?php echo(isset($item['zustaendig']) ? $item['zustaendig'] : "niemand"); ?></td>
-                <td class="text-end"><i class="fa-regular fa-trash-can text-primary m-3"></i> <i class="fa-regular fa-pen-to-square text-primary m-3"></i></td>
+                <td><?= ($item['aufgabeName'] ?? ""); ?></td>
+                <td><?= ($item['aufgabeBeschreibung'] ?? ""); ?></td>
+                <td><?= ($item['reiterName'] ?? ""); ?></td>
+                <td><?= ($item['zustaendig'] ?? "--"); ?></td>
+                <td class="text-end">
+                    <i class="fa-regular fa-pen-to-square text-primary m-3"></i>
+                    <i class="fa-regular fa-trash-can text-danger m-3"></i>
+                </td>
             </tr>
         <?php endforeach; endif;?>
         </tbody>

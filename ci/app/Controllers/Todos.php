@@ -21,8 +21,8 @@ class Todos extends BaseController
     {
         $headData['title'] = 'Todos';
         $headData['heading'] = $this->session->get('currentProjectName');;
-        $data['reiter'] = $this->ReiterModel->getReiter();
-        $data['aufgaben'] = $this->AufgabenModel->getAufgaben();
+        $data['reiter'] = $this->ReiterModel->getReiter($this->session->get('currentProjectId'));
+        $data['aufgaben'] = $this->AufgabenModel->getAufgaben($this->session->get('currentProjectId'));
 
         $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
         $navbarData['currentProjectName'] = $this->session->get('currentProjectName');

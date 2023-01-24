@@ -9,11 +9,9 @@ use App\Models\ReiterModel;
 class Tabs extends BaseController
 {
     private ReiterModel $ReiterModel;
-    private AufgabeModel $AufgabenModel;
 
     public function __construct() {
 
-        $this->AufgabenModel = new AufgabeModel();
         $this->ReiterModel = new ReiterModel();
 
     }
@@ -21,7 +19,7 @@ class Tabs extends BaseController
     {
         $headData['title'] = 'Reiter';
         $headData['heading'] = 'Aufgabenplaner: Reiter';
-        $data['reiter'] = $this->ReiterModel->getReiter();
+        $data['reiter'] = $this->ReiterModel->getReiter($this->session->get('currentProjectId'));
 
         $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
         $navbarData['currentProjectName'] = $this->session->get('currentProjectName');
