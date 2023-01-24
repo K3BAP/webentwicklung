@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 20. Jan 2023 um 18:41
+-- Erstellungszeit: 24. Jan 2023 um 13:52
 -- Server-Version: 10.4.27-MariaDB
 -- PHP-Version: 8.2.0
 
@@ -139,6 +139,7 @@ INSERT INTO `projekt_mitglied` (`projektId`, `mitgliedId`) VALUES
 
 CREATE TABLE `reiter` (
   `reiterId` int(10) UNSIGNED NOT NULL,
+  `reiterProjektId` int(10) UNSIGNED NOT NULL,
   `reiterName` varchar(100) NOT NULL,
   `reiterBeschreibung` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -147,10 +148,10 @@ CREATE TABLE `reiter` (
 -- Daten für Tabelle `reiter`
 --
 
-INSERT INTO `reiter` (`reiterId`, `reiterName`, `reiterBeschreibung`) VALUES
-(1, 'ToDo', 'Dinge, die erledigt werden müssen'),
-(2, 'Erledigt', 'Dinge, die erledigt sind'),
-(3, 'Verschoben', 'Dinge, die später erledigt werden');
+INSERT INTO `reiter` (`reiterId`, `reiterProjektId`, `reiterName`, `reiterBeschreibung`) VALUES
+(1, 1, 'ToDo', 'Dinge, die erledigt werden müssen'),
+(2, 1, 'Erledigt', 'Dinge, die erledigt sind'),
+(3, 1, 'Verschoben', 'Dinge, die später erledigt werden');
 
 --
 -- Indizes der exportierten Tabellen
@@ -196,7 +197,8 @@ ALTER TABLE `projekt_mitglied`
 -- Indizes für die Tabelle `reiter`
 --
 ALTER TABLE `reiter`
-  ADD PRIMARY KEY (`reiterId`);
+  ADD PRIMARY KEY (`reiterId`),
+  ADD KEY `reiterProjektId` (`reiterProjektId`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
@@ -206,25 +208,25 @@ ALTER TABLE `reiter`
 -- AUTO_INCREMENT für Tabelle `aufgabe`
 --
 ALTER TABLE `aufgabe`
-  MODIFY `aufgabeId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `aufgabeId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `mitglied`
 --
 ALTER TABLE `mitglied`
-  MODIFY `mitgliedId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `mitgliedId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `projekt`
 --
 ALTER TABLE `projekt`
-  MODIFY `projektId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `projektId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `reiter`
 --
 ALTER TABLE `reiter`
-  MODIFY `reiterId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `reiterId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints der exportierten Tabellen
@@ -256,6 +258,12 @@ ALTER TABLE `projekt`
 ALTER TABLE `projekt_mitglied`
   ADD CONSTRAINT `projekt_mitglied_ibfk_1` FOREIGN KEY (`mitgliedId`) REFERENCES `mitglied` (`mitgliedId`) ON DELETE CASCADE,
   ADD CONSTRAINT `projekt_mitglied_ibfk_2` FOREIGN KEY (`projektId`) REFERENCES `projekt` (`projektId`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `reiter`
+--
+ALTER TABLE `reiter`
+  ADD CONSTRAINT `reiter_ibfk_1` FOREIGN KEY (`reiterProjektId`) REFERENCES `projekt` (`projektId`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
