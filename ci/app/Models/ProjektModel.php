@@ -74,11 +74,12 @@ class ProjektModel extends Model
         $projekt_mitglied->delete();
     }
 
-    public function createProject(string $projektName, string $projektBeschreibung) {
+    public function createProject(string $projektName, string $projektBeschreibung, string $projektErstellerMitgliedId) {
         $projekte = $this->db->table("projekt");
         $projekte->insert(array(
-            'projektName' => $projektName,
-            'projektBeschreibung' => $projektBeschreibung
+            'projektName'                   => $projektName,
+            'projektBeschreibung'           => $projektBeschreibung,
+            'projektErstellerMitgliedId'    => $projektErstellerMitgliedId
         ));
         return $this->db->insertID();
     }

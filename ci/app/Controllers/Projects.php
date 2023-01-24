@@ -41,7 +41,8 @@ class Projects extends BaseController
                 // Speichere neues Projekt und füge aktuellen Benutzer zum Projekt hinzu
                 $inserted_id = $this->projektModel->createProject(
                     $_POST['projektName'],
-                    $_POST['beschreibung']
+                    $_POST['beschreibung'],
+                    $this->session->get('sessionUserId')
                 );
                 $this->projektModel->addMitgliedToProject($this->session->get("sessionUserId"), $inserted_id);
             }
