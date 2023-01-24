@@ -44,6 +44,7 @@ $routes->get('projects/delete', 'Projects::delete');
 $routes->get('projects/load', 'Projects::load');
 $routes->get('tabs', 'Tabs::index');
 $routes->get('tasks', 'Tasks::index');
+$routes->get('tasks/delete', 'Tasks::delete');
 $routes->get('persons', 'Persons::index');
 $routes->get('persons/delete', 'Persons::delete');
 

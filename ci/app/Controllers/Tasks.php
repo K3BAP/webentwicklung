@@ -40,4 +40,9 @@ class Tasks extends BaseController
     {
         var_dump($_POST);
     }
+
+    public function delete()
+    {
+        var_dump($_GET);
+    }
 }
