@@ -8,18 +8,24 @@ use App\Models\ReiterModel;
 
 class Tasks extends BaseController
 {
-    private AufgabeModel $AufgabenModel;
+    private AufgabeModel $aufgabenModel;
+    private ReiterModel $reiterModel;
+    private MitgliedModel $mitgliedModel;
 
     public function __construct() {
+        $this->aufgabenModel = new AufgabeModel();
+        $this->reiterModel = new ReiterModel();
+        $this->mitgliedModel = new MitgliedModel();
 
-        $this->AufgabenModel = new AufgabeModel();
-
+        helper(["form", "url"]);
     }
     public function index()
     {
         $headData['title'] = 'Aufgaben';
         $headData['heading'] = 'Aufgabenplaner: Aufgaben';
-        $data['aufgaben'] = $this->AufgabenModel->getAufgabenWithRefs($this->session->get("currentProjectId"));
+        $data['aufgaben'] = $this->aufgabenModel->getAufgabenWithRefs($this->session->get("currentProjectId"));
+        $data['reiter'] = $this->reiterModel->getReiter($this->session->get('currentProjectId'));
+        $data['mitglieder'] = $this->mitgliedModel->getMitglieder();
 
         $navbarData['currentProjectId'] = $this->session->get('currentProjectId');
         $navbarData['currentProjectName'] = $this->session->get('currentProjectName');
@@ -28,5 +34,10 @@ class Tasks extends BaseController
         echo view('templates/sidebar', $navbarData);
         echo view('tasks', $data);
         echo view('templates/footer');
+    }
+
+    public function save()
+    {
+        var_dump($_POST);
     }
 }

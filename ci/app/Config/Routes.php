@@ -47,6 +47,7 @@ $routes->get('tasks', 'Tasks::index');
 $routes->get('persons', 'Persons::index');
 $routes->get('persons/delete', 'Persons::delete');
 
+$routes->post('tasks/save', 'Tasks::save');
 $routes->post('persons/save', 'Persons::save');
 $routes->post('projects/save', 'Projects::save');
 $routes->post('login', 'Login::login');
