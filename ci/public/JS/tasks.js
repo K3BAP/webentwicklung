@@ -87,7 +87,7 @@ editModal.addEventListener('show.bs.modal', event => {
         aufgabeIdInput.removeAttribute('value');
         aufgabeBezeichnungInput.removeAttribute('value');
         aufgabeBeschreibungText.textContent =  "";
-        erstellungsDatumInput.removeAttribute('value');
+        erstellungsDatumInput.setAttribute('value', new Date().toISOString().substring(0,10));
         faelligDatumInput.removeAttribute('value');
 
         // Select associated tabs in select menu
