@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\AufgabeModel;
 use App\Models\MitgliedModel;
 use App\Models\ReiterModel;
+use Exception;
 
 class Tasks extends BaseController
 {
@@ -38,12 +39,28 @@ class Tasks extends BaseController
 
     public function save()
     {
-        var_dump($_POST);
+        if (empty($_POST['aufgabeId'])) {
+            // Neue Aufgabe anlegen
+
+            // Prüfe, dass alle Felder ausgefüllt sind
+            if (empty($_POST['aufgabeBezeichnung']) | empty($_POST['aufgabeBeschreibung']) | empty($_POST['aufgabeReiter'])) return redirect()->to(base_url('./tasks'));
+
+            // Speichere neue Aufgabe
+            $this->aufgabenModel->createAufgabe(
+                $_POST['aufgabeBezeichnung'],
+                $_POST['aufgabeBeschreibung'],
+                $_POST['faelligDatum'] ?? null,
+                $this->session->get('sessionUserId'),
+                $_POST['aufgabeReiter'],
+                $_POST['zustaendig'] ?? null,
+            );
+        }
+
+        return redirect()->to(base_url("tasks"));
     }
 
     public function delete()
     {
-        var_dump($_GET);
         if (!empty($_GET['id'])) {
             $this->aufgabenModel->deleteAufgabe($_GET['id']);
         }

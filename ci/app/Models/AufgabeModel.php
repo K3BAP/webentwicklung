@@ -35,8 +35,19 @@ class AufgabeModel extends Model
 
     public function deleteAufgabe(int $aufgabeId)
     {
-        $mitglieder = $this->db->table("aufgabe");
-        $mitglieder->where("aufgabeId", $aufgabeId);
-        $mitglieder->delete();
+        $aufgaben = $this->db->table("aufgabe");
+        $aufgaben->where("aufgabeId", $aufgabeId);
+        $aufgaben->delete();
+    }
+
+    public function createAufgabe(string $aufgabeName, string $aufgabeBeschreibung, $aufgabeFaellig, int $erstellerId, int $reiterId, $zustaendig) {
+        $aufgaben = $this->db->table('aufgabe');
+        $aufgaben->insert(array(
+            'aufgabeName'                   => $aufgabeName,
+            'aufgabeBeschreibung'           => $aufgabeBeschreibung,
+            'aufgabeFaellig'                => $aufgabeFaellig ?? null,
+            'aufgabeErstellerMitgliedId'    => $erstellerId,
+            'aufgabeReiterId'               => $reiterId
+        ));
     }
 }
