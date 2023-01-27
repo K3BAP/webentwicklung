@@ -41,6 +41,7 @@ class AufgabeModel extends Model
     }
 
     public function createAufgabe(string $aufgabeName, string $aufgabeBeschreibung, $aufgabeFaellig, int $erstellerId, int $reiterId, $zustaendig) {
+        // Aufgabe erstellen
         $aufgaben = $this->db->table('aufgabe');
         $aufgaben->insert(array(
             'aufgabeName'                   => $aufgabeName,
@@ -49,5 +50,18 @@ class AufgabeModel extends Model
             'aufgabeErstellerMitgliedId'    => $erstellerId,
             'aufgabeReiterId'               => $reiterId
         ));
+
+        $aufgabeId = $this->db->insertID();
+
+        // Aufgabe_Mitglied Verknüpfungen erstellen
+        $aufgabe_mitglied = $this->db->table('aufgabe_mitglied');
+        if (!empty($zustaendig)) {
+            foreach ($zustaendig as $item) {
+                $aufgabe_mitglied->insert(array(
+                   'aufgabeId' => $aufgabeId,
+                   'mitgliedId' => $item
+                ));
+            }
+        }
     }
 }
