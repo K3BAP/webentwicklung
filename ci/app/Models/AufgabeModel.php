@@ -40,7 +40,7 @@ class AufgabeModel extends Model
         $aufgaben->delete();
     }
 
-    public function createAufgabe(string $aufgabeName, string $aufgabeBeschreibung, $aufgabeFaellig, int $erstellerId, int $reiterId, $zustaendig) {
+    public function createAufgabe(string $aufgabeName, string $aufgabeBeschreibung, $aufgabeFaellig, int $erstellerId, int $reiterId) {
         // Aufgabe erstellen
         $aufgaben = $this->db->table('aufgabe');
         $aufgaben->insert(array(
@@ -51,15 +51,35 @@ class AufgabeModel extends Model
             'aufgabeReiterId'               => $reiterId
         ));
 
-        $aufgabeId = $this->db->insertID();
+        return $this->db->insertID();
+    }
+
+    public function editAufgabe(int $aufgabeId, string $aufgabeName, string $aufgabeBeschreibung, $aufgabeFaellig, int $erstellerId, int $reiterId) {
+        // Aufgabe aktualisieren
+        $aufgaben = $this->db->table('aufgabe');
+        $aufgaben->where('aufgabeId', $aufgabeId);
+        $aufgaben->update(array(
+            'aufgabeName'                   => $aufgabeName,
+            'aufgabeBeschreibung'           => $aufgabeBeschreibung,
+            'aufgabeFaellig'                => $aufgabeFaellig ?? null,
+            'aufgabeErstellerMitgliedId'    => $erstellerId,
+            'aufgabeReiterId'               => $reiterId
+        ));
+    }
+
+    public function setZustaendig(int $aufgabeId, $zustaendig) {
+        $aufgabe_mitglied = $this->db->table('aufgabe_mitglied');
+
+        // Bestehende Verknüpfungen entfernen
+        $aufgabe_mitglied->where('aufgabeId', $aufgabeId);
+        $aufgabe_mitglied->delete();
 
         // Aufgabe_Mitglied Verknüpfungen erstellen
-        $aufgabe_mitglied = $this->db->table('aufgabe_mitglied');
         if (!empty($zustaendig)) {
             foreach ($zustaendig as $item) {
                 $aufgabe_mitglied->insert(array(
-                   'aufgabeId' => $aufgabeId,
-                   'mitgliedId' => $item
+                    'aufgabeId' => $aufgabeId,
+                    'mitgliedId' => $item
                 ));
             }
         }

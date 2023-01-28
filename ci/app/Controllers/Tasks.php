@@ -39,22 +39,40 @@ class Tasks extends BaseController
 
     public function save()
     {
+        // Prüfe, dass alle Felder ausgefüllt sind
+        if (empty($_POST['aufgabeBezeichnung']) | empty($_POST['aufgabeBeschreibung']) | empty($_POST['aufgabeReiter'])) return redirect()->to(base_url('./tasks'));
+
         if (empty($_POST['aufgabeId'])) {
             // Neue Aufgabe anlegen
 
-            // Prüfe, dass alle Felder ausgefüllt sind
-            if (empty($_POST['aufgabeBezeichnung']) | empty($_POST['aufgabeBeschreibung']) | empty($_POST['aufgabeReiter'])) return redirect()->to(base_url('./tasks'));
-
             // Speichere neue Aufgabe
-            $this->aufgabenModel->createAufgabe(
+            $aufgabeId = $this->aufgabenModel->createAufgabe(
                 $_POST['aufgabeBezeichnung'],
                 $_POST['aufgabeBeschreibung'],
                 $_POST['faelligDatum'] ?? null,
                 $this->session->get('sessionUserId'),
                 $_POST['aufgabeReiter'],
-                $_POST['zustaendig'] ?? null,
             );
         }
+        else {
+            // Bestehende Aufgabe aktualisieren
+            $aufgabeId = $_POST['aufgabeId'];
+
+            $this->aufgabenModel->editAufgabe(
+                $aufgabeId,
+                $_POST['aufgabeBezeichnung'],
+                $_POST['aufgabeBeschreibung'],
+                $_POST['faelligDatum'] ?? null,
+                $this->session->get('sessionUserId'),
+                $_POST['aufgabeReiter'],
+            );
+        }
+
+        // Zuständige Mitglieder eintragen
+        $this->aufgabenModel->setZustaendig(
+            $aufgabeId,
+            $_POST['zustaendig'] ?? null,
+        );
 
         return redirect()->to(base_url("tasks"));
     }
