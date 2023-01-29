@@ -4,6 +4,20 @@ use CodeIgniter\Model;
 
 class MitgliedModel extends Model
 {
+    public function getMitgliederWithInProjekt()
+    {
+        $mitglieder = $this->db->table("mitglied");
+        $mitglieder->select("mitglied.*, (mitglied.mitgliedId in (
+            SELECT mitgliedId
+            FROM projekt_mitglied
+            WHERE projektId = ". $_SESSION['currentProjectId'] .")) 
+            as inProjekt");
+        $mitglieder->orderBy("mitgliedUsername");
+
+        $result = $mitglieder->get();
+        return $result->getResultArray();
+    }
+
     public function getMitglieder()
     {
         $mitglieder = $this->db->table("mitglied");

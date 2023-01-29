@@ -76,7 +76,7 @@
             <tr>
                 <td class="data-username"><?php echo($item['mitgliedUsername'] ?? ""); ?></td>
                 <td class="data-email"><?php echo($item['mitgliedEmail'] ?? ""); ?></td>
-                <td><input type="checkbox" class="form-check-input m-3 data-assigned" onclick="return false;" <?php if (isset($item['in_projekt']) and $item['in_projekt']): echo('checked=checked'); endif; ?> ></td>
+                <td><input type="checkbox" class="form-check-input m-3 data-assigned" onclick="return false;" <?php if (isset($item['inProjekt']) and $item['inProjekt']): echo('checked=checked'); endif; ?> ></td>
                 <td class="text-end">
                     <a
                             class="fa-regular fa-pen-to-square text-primary m-3"

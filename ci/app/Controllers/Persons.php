@@ -26,12 +26,11 @@ class Persons extends BaseController
     {
         $headData['title'] = 'Mitglieder';
         $headData['heading'] = 'Aufgabenplaner: Mitglieder';
-        $data['personen'] = $this->mitgliedModel->getMitglieder();
+        $data['personen'] = $this->mitgliedModel->getMitgliederWithInProjekt();
 
         // For each person check if it is assigned to current project (for checkbox in table)
         foreach ($data['personen'] as &$person)
         {
-            $person['in_projekt'] = $this->projektModel->mitgliedInProjekt($person['mitgliedId'], $this->session->get('currentProjectId'));
             $person['ist_angemeldet'] = ($person['mitgliedId'] == $this->session->get('sessionUserId'));
         }
 
