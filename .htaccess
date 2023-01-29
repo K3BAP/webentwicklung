@@ -1,7 +1,7 @@
 RewriteEngine on
 
 # Rewrite static resources
-RewriteRule (.+\.(?:js|css))$ ci/public/$1 [L]
+RewriteRule (.+\.(?:js|css|ico))$ ci/public/$1 [L]
 
 # Rewrite everything else to the "public" directory
 RewriteRule .* ci/public/ [L]
