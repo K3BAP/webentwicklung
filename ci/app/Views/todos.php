@@ -1,4 +1,4 @@
-<div class="col-10">
+<div class="col-8">
     <div class="row">
         <?php if(isset($reiter)): foreach ($reiter as $item): ?>
         <div class="col-4">
