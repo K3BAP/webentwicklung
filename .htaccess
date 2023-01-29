@@ -1,4 +1,7 @@
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ ci/public/index.php/$1 [L]
+
+# Rewrite static resources
+RewriteRule (.+\.(?:js|css))$ ci/public/$1 [L]
+
+# Rewrite everything else to the "public" directory
+RewriteRule .* ci/public/ [L]
